@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/TaskPage.css";
 
 function TaskPage() {
-  const health = 50;
+  const health = 100;
   const maxHealth = 100;
   const healthPercentage = (health / maxHealth) * 100;
 
@@ -17,15 +17,17 @@ function TaskPage() {
             <img src="https://via.placeholder.com/100x100" alt="Profile" className="profile-pic" />
             <div className="column">
               <div className="stat">
-                Health: {health}/{maxHealth}
                 <div className="bar">
-                  <div className="health-bar" style={{ width: `${healthPercentage}%` }}></div>
+                  <div className="health-bar" style={{ width: `${healthPercentage}%` }}>
+                    <span>Health: {health}/{maxHealth}</span>
+                  </div>
                 </div>
               </div>
               <div className="stat">
-                XP: {xp}/{xpNeeded}
                 <div className="bar">
-                  <div className="xp-bar" style={{ width: `${xpPercentage}%` }}></div>
+                  <div className="xp-bar" style={{ width: `${xpPercentage}%` }}>
+                    <span>XP: {xp}/{xpNeeded}</span>
+                  </div>
                 </div>
               </div>
               <div className="stat">Level: <span className="value">5</span></div>
