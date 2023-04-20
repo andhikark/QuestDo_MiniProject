@@ -14,7 +14,7 @@ function TaskPage() {
     <div className="Container">
         <div className="User-Container">
           <div className="stats">
-            <img src="https://via.placeholder.com/100x100" alt="Profile" className="profile-pic" />
+            <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg" alt="Profile" className="profile-pic" />
             <div className="column">
               <div className="stat">
                 <div className="bar">
@@ -30,7 +30,11 @@ function TaskPage() {
                   </div>
                 </div>
               </div>
-              <div className="stat">Level: <span className="value">5</span></div>
+                <div className="stat">
+                  <div className="level-bar">
+                    Level: <span className="value">5</span>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
