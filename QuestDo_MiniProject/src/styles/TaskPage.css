@@ -1,8 +1,7 @@
 .User-Container{
     display: flex;
-    flex-direction: column;
+    flex-direction: flex-start;
     align-items: center;
-    justify-content: center;
     height: 380px;
     background-color: #3B3939;
 }
@@ -14,4 +13,61 @@
     justify-content: center;
     height: 380px;
     background-color: #3E3E3E;
+}
+  
+  .profile-pic {
+    width: 10%;
+    height: 50%;
+    margin-right: 20px;
+    border-radius: 5px;
+  }
+  
+
+.stats {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-left: 1%;
+}
+
+
+.column {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 23px ;
+  width: 80%;
+  font-family: 'Sanchez', serif;
+}
+
+.stat {
+  margin-bottom: 10px;
+  position: relative;
+  margin-left: 1%;
+}
+
+.bar {
+  height: 30px;
+  background-color: #F92222;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.health-bar {
+  height: 30px;
+  background-color: #24E170;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.xp-bar {
+  height: 30px;
+  background-color: #F4F90D;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
