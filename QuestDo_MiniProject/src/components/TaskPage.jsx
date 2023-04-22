@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/TaskPage.css";
-
+import Navbar from "./Navbar";
 function TaskPage() {
   const health = 100;
   const maxHealth = 100;
@@ -10,29 +10,34 @@ function TaskPage() {
   const xpNeeded = 500;
   const xpPercentage = (xp / xpNeeded) * 100;
 
-  return (
+  const level = 1;
+
+  return (  
+  <div className="Home">
+      <Navbar />
     <div className="Container">
         <div className="User-Container">
           <div className="stats">
             <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg" alt="Profile" className="profile-pic" />
             <div className="column">
               <div className="stat">
+              <span className="Info">Health: {health}/{maxHealth}</span>
                 <div className="bar">
                   <div className="health-bar" style={{ width: `${healthPercentage}%` }}>
-                    <span>Health: {health}/{maxHealth}</span>
                   </div>
                 </div>
               </div>
               <div className="stat">
+              <span className="Info">XP: {xp}/{xpNeeded}</span>
                 <div className="bar">
                   <div className="xp-bar" style={{ width: `${xpPercentage}%` }}>
-                    <span>XP: {xp}/{xpNeeded}</span>
+                    
                   </div>
                 </div>
               </div>
                 <div className="stat">
                   <div className="level-bar">
-                    Level: <span className="value">5</span>
+                    Level: <span className="value">{level}</span>
                   </div>
                 </div>
             </div>
@@ -44,7 +49,7 @@ function TaskPage() {
         </div>
 
     </div>
-    
+  </div>
   );
 }
 
