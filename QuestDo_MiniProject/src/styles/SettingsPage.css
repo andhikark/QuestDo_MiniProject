@@ -1,0 +1,48 @@
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .profile-picture {
+    margin-bottom: 20px;
+  }
+  
+  .account-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 65px;
+    background-color: #826A99;
+    opacity: 0.55;
+    border-radius: 5px;
+  }
+  
+  .email {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    align-items: center;
+    font-family: 'Sanchez', sans-serif;
+  }
+
+  .my-account-button {
+    background-color: #5D2E8C;
+    opacity: 0.52;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .button-text {
+    font-family: 'Sahitya', serif;
+    color: #fff;
+    margin-left: 10px;
+  }
+  
+  

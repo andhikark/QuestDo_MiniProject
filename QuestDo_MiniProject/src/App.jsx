@@ -3,11 +3,12 @@ import About from './components/AboutPage'
 import Navbar from './components/Navbar'
 import TaskPage from './components/TaskPage'
 import Login from './components/LoginPage'
+import Settings from './components/SettingsPage'
 function App() {
   return (
     <div className="App">
       
-      <Login/>
+      <Settings />
     </div>
   )
 }
