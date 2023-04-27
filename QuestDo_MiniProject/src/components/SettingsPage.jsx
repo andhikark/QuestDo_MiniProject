@@ -1,7 +1,18 @@
 import React from 'react';
+import { useState } from 'react';
 import '../styles/SettingsPage.css';
 
 function Settings() {
+  const [isRemainderEnabled, setIsRemainderEnabled] = useState(false);
+  const [isRemainderEnabled1, setIsRemainderEnabled1] = useState(false);
+
+  const toggleRemainder = () => {
+    setIsRemainderEnabled(!isRemainderEnabled);
+  };
+
+  const toggleRemainder1 = () => {
+    setIsRemainderEnabled1(!isRemainderEnabled1);
+  };
   return (
     <div>
       <div className="settings-container">
@@ -16,17 +27,38 @@ function Settings() {
 
       <div className="button-container">
         <button className="my-account-button">
-            <span className="button-text">My Account</span>
+        <span className="button-text">My Account</span>
         </button>
       </div>
 
-      <div className='remainder-container'>
+      <div className="remainder-container">
+        <div className="remainder-wrapper">
+          <p className="remainder-text">Remainders  </p>
+          <label className="toggle-switch">
+            <input type="checkbox" checked={isRemainderEnabled} onChange={toggleRemainder} />
+            <span className="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <div className="remainder-container">
+        <div className="notification-wrapper">
+          <p className="remainder-text">Notifications </p>
+          <label className="toggle-switch">
+            <input type="checkbox" checked={isRemainderEnabled1} onChange={toggleRemainder1} />
+            <span className="slider round"></span>
+          </label>
+        </div>
         
       </div>
 
+      <div className="log-out-container">
+        <button className="log-out-button">
+        <span className="log-out-text">Log Out</span>
+        </button>
+      </div>
 
     </div>
-   
 
     
   );

@@ -30,6 +30,7 @@
 
   .my-account-button {
     background-color: #5D2E8C;
+    cursor: pointer;
     opacity: 0.52;
     border-radius: 10px;
     border: none;
@@ -44,7 +45,7 @@
     font-family: 'Sahitya', serif;
     color: #fff;
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .button-container{
@@ -59,8 +60,126 @@
 
   .remainder-container {
     border-top: 2px solid rgba(0, 0, 0, 0.16);
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .remainder-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #5D2E8C;
+    opacity: 0.52;
+    border-radius: 5px;
+    padding: 10px;
+    padding-right: 90px;
   }
 
+  .notification-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #5D2E8C;
+    opacity: 0.52;
+    border-radius: 5px;
+    padding: 10px;
+    padding-right: 79px;
+  }
   
+  .remainder-text {
+    font-family: 'Sahitya',serif;
+    font-size: 22px;
+    color: #fff;
+    margin-right: 350px;
+    margin-left: 10px;
+  }
   
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-right: auto;
+  }
   
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #b693d8;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #5D2E8C;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #251E1E;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #5D2E8C;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  .log-out-container{
+    border-top: 2px solid rgba(0, 0, 0, 0.16);
+    padding-top: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .log-out-button{
+    background-color: #5D2E8C;
+    cursor: pointer;
+    opacity: 0.52;
+    border-radius: 10px;
+    border: none;
+    padding: 24px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .log-out-text{
+    font-family: 'Sahitya', serif;
+    color: #000000;
+    margin-left: 10px;
+    font-size: 24px;
+  }
