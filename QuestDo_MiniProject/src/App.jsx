@@ -4,11 +4,13 @@ import Navbar from './components/Navbar'
 import TaskPage from './components/TaskPage'
 import Login from './components/LoginPage'
 import Settings from './components/SettingsPage'
+import SignInPage from './components/SignInPage'
 function App() {
   return (
     <div className="App">
       
-      <Settings />
+      <SignInPage />
+      {/* <Login /> */}
     </div>
   )
 }

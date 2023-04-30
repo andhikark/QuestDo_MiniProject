@@ -114,7 +114,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #b693d8;
+    background-color: #251E1E;
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 34px;
@@ -134,7 +134,7 @@
   }
   
   input:checked + .slider {
-    background-color: #251E1E;
+    background-color: #b693d8;
   }
   
   input:focus + .slider {
@@ -165,7 +165,7 @@
   }
 
   .log-out-button{
-    background-color: #5D2E8C;
+    background-color: #8c19ffcc;
     cursor: pointer;
     opacity: 0.52;
     border-radius: 10px;
@@ -179,7 +179,7 @@
 
   .log-out-text{
     font-family: 'Sahitya', serif;
-    color: #000000;
+    color: #ffcdcd;
     margin-left: 10px;
     font-size: 24px;
   }
