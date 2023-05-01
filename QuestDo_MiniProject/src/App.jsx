@@ -6,10 +6,11 @@ import Login from './components/LoginPage'
 import Settings from './components/SettingsPage'
 import SignInPage from './components/SignInPage'
 import MyAccountPage from './components/MyAccountPage'
+import ProfilePage from './components/ProfilePage'
 function App() {
   return (
     <div className="App">
-      <MyAccountPage/>
+      <ProfilePage />
     </div>
   )
 }
