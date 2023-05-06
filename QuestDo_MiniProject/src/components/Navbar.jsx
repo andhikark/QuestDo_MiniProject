@@ -10,7 +10,7 @@ function NavBar() {
     <>
       <nav className="navbar">
         <div className="nav-container">
-          <NavLink exact to="/" className="nav-logo">
+          <NavLink exact to="/profile" className="nav-logo">
             QuestDo
           </NavLink>
 
@@ -18,7 +18,7 @@ function NavBar() {
             <li className="nav-item">
               <NavLink
                 exact
-                to="/"
+                to="/profile"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}

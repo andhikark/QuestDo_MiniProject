@@ -1,14 +1,14 @@
-import React from 'react';
-import '../styles/LoginPage.css'; // import the CSS file for this component
+import { Link } from 'react-router-dom';
+import '../styles/LoginPage.css';
 
 function Login() {
   return (
     <div className="login-container">
       <div className="login-title">QuestDo</div>
       <div className="login-buttons">
-        <button className="login-button">Login</button>
+        <Link to="/profile" className="login-button">Login</Link>
         <div className="or-text">or</div>
-        <button className="signin-button">Sign in</button>
+        <Link to="/signin" className="signin-button">Sign in</Link>
       </div>
       <div className="login-message">
         Let’s make your task feel like a game!

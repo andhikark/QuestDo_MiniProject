@@ -1,9 +1,11 @@
 import React from "react";
 import "../styles/About.css";
-
+import NavBar from "./Navbar";
 function About() {
   return (
-    <div className="about-container">
+    <div>
+      <NavBar />
+      <div className="about-container">
       <div className="about-header">
         <div className="about-title">
           <div className="about-rectangle">
@@ -17,6 +19,8 @@ function About() {
         </p>
       </div>
     </div>
+    </div>
+    
   );
 }
 
