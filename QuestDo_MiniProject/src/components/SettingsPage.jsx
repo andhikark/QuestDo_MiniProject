@@ -16,7 +16,6 @@ function Settings() {
   };
   return (
     <div>
-      <Navbar />
       <div className="settings-container">
         <div className="profile-picture">
           <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg" alt="Profile" width="200" height="200" style={{ borderRadius: "5px" }} />

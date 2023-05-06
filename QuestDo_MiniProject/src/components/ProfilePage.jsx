@@ -14,7 +14,6 @@ function ProfilePage() {
 
   return (  
   <div className="Home">
-      <Navbar />
     <div className="Container">
         <div className="User-Container">
           <div className="stats">

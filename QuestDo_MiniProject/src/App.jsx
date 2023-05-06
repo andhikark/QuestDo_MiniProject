@@ -1,4 +1,5 @@
 import './App.css'
+import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
 import About from './components/AboutPage'
 import Navbar from './components/Navbar'
 import TaskPage from './components/TaskPage'
@@ -9,9 +10,19 @@ import MyAccountPage from './components/MyAccountPage'
 import ProfilePage from './components/ProfilePage'
 function App() {
   return (
-    <div className="App">
-      <ProfilePage />
-    </div>
+    <Router>
+      <Navbar/>
+      <div className="Pages">
+          <Routes>
+            <Route path="/" element={<ProfilePage />} />
+            <Route path="/task" element={<TaskPage/>} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+      </div>
+
+    </Router>
+    
   )
 }
 

@@ -97,6 +97,7 @@
     color: white;
     font-family: 'Sanchez', serif;
     padding: 10px;
+    text-align: center;
 }
 
 @media (max-width: 768px) {
