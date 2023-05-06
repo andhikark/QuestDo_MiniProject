@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    padding-top: 50px;
+    background-color: #3B3939;
   }
   
   .profile-picture {
@@ -50,19 +51,20 @@
 
   .button-container{
     border-top: 2px solid rgba(0, 0, 0, 0.16);
-    padding-top: 30px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    padding-top: 60px;
+    padding-bottom: 30px;
     display: flex;
     justify-content: flex-start;
     position: relative;
+    background-color: #3B3939;
   }
 
   .remainder-container {
     border-top: 2px solid rgba(0, 0, 0, 0.16);
-    padding: 30px 20px;
+    padding: 40px 20px;
     display: flex;
     justify-content: space-between;
+    background-color: #3B3939;
   }
   
   .remainder-wrapper {
@@ -156,12 +158,12 @@
   
   .log-out-container{
     border-top: 2px solid rgba(0, 0, 0, 0.16);
-    padding-top: 30px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     display: flex;
     justify-content: center;
     position: relative;
+    background-color: #3B3939;
   }
 
   .log-out-button{

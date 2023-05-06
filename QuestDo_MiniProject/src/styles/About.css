@@ -3,7 +3,8 @@
     flex-direction: column;
     align-items: center;
     background-color: #3B3939;
-    margin-top: 20%;
+    padding-top: 20%;
+    padding-bottom: 13.5%;
   }
   
   .about-header {
