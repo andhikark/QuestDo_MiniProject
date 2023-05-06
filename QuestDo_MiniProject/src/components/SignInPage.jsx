@@ -2,6 +2,7 @@
   import { useState } from "react";
   import { FaArrowLeft } from "react-icons/fa";
   import '../styles/SignInPage.css';
+  import { Link } from 'react-router-dom';
 
   function SignInPage (){
 
@@ -46,7 +47,7 @@
 
     return(
       <div className="page-container">
-        <button className="back-button"><FaArrowLeft size={20} color="#FFF" /></button>
+        <Link to="/" className="back-button"><FaArrowLeft size={25} color="#FFF" /></Link>
         <div className="sign-title">QuestDo</div>
         <form className="sign-form" onSubmit={handleSubmit}>
           <div className="input-container">
@@ -64,7 +65,7 @@
             <input type="password" name="confirm-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
             {confirmPasswordError && <span className="error-message">Passwords do not match</span>}
           </div>
-          <button type="submit" className="sign-button">Sign Up</button>
+          <button type="submit" className="sign-button ">Sign Up</button>
         </form>
       </div>
     );
