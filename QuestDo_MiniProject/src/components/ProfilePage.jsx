@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/ProfilePage.css";
-import Navbar from "./Navbar";
+
 function ProfilePage() {
   const health = 100;
   const maxHealth = 100;

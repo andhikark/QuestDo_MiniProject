@@ -18,10 +18,13 @@ function App() {
             <Route path="/task" element={<TaskPage/>} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/about" element={<About />} />
+            <Route path="/myaccount" element={<MyAccountPage />} />
           </Routes>
       </div>
 
     </Router>
+
+    
     
   )
 }

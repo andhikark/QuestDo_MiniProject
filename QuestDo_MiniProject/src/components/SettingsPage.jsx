@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import '../styles/SettingsPage.css';
-import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 function Settings() {
   const [isRemainderEnabled, setIsRemainderEnabled] = useState(false);
@@ -27,9 +27,9 @@ function Settings() {
 
 
       <div className="button-container">
-        <button className="my-account-button">
-        <span className="button-text">My Account</span>
-        </button>
+        <Link to="/myaccount" className="my-account-button">
+          <span className="button-text">My Account</span>
+        </Link>
       </div>
 
       <div className="remainder-container">

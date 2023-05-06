@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/TaskPage.css";
-import Navbar from "./Navbar";
 function TaskPage() {
   const health = 100;
   const maxHealth = 100;
