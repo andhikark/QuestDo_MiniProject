@@ -8,6 +8,7 @@
   position: sticky;
   top: 0;
   z-index: 20;
+  border: 1px solid #000000;
 }
 
 .nav-container {
@@ -114,7 +115,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-100%, 60%);
+    transform: translate(-80%, 40%);
     font-size: 1.8rem;
     cursor: pointer;
     color: #ffdd40;

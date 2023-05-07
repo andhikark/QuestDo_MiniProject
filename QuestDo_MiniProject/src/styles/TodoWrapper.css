@@ -1,0 +1,14 @@
+.TodoWrapper {
+    background: #3B3939;
+    padding: 1rem;
+    border-radius: 3px;
+    height: 100%;   
+    width: 93vw;
+    margin-left: 0;
+  }
+
+  @media (max-width: 600px) {
+    .TodoWrapper {
+      width: 90vw;
+    }
+  }

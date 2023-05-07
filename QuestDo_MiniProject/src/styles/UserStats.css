@@ -4,6 +4,7 @@
     align-items: center;
     height: 380px;
     background-color: #3B3939;
+    border-bottom: 2px solid #000000;
 }
 
 .profile-pic {

@@ -7,6 +7,7 @@ function MyAccountPage () {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [formErrors, setFormErrors] = useState({});
+  const [picture, setPicture] = useState(null);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -16,43 +17,49 @@ function MyAccountPage () {
     setEmail(event.target.value);
   };
 
+  const handlePictureChange = (event) => {
+    setPicture(URL.createObjectURL(event.target.files[0]));
+  }
+
   const handleSubmit = (event) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  // Regex for email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Regex for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Validate form inputs
-  let errors = {};
-  if (!username) {
-    errors.username = "Username is required";
-  }
-  if (!email) {
-    errors.email = "Email is required";
-  } else if (!emailRegex.test(email)) {
-    errors.email = "Invalid email format";
-  }
-  setFormErrors(errors);
+    // Validate form inputs
+    let errors = {};
+    if (!username) {
+      errors.username = "Username is required";
+    }
+    if (!email) {
+      errors.email = "Email is required";
+    } else if (!emailRegex.test(email)) {
+      errors.email = "Invalid email format";
+    }
+    setFormErrors(errors);
 
-  // Submit form if no errors
-  if (Object.keys(errors).length === 0) {
-    // TODO: Submit form
-    console.log("Form submitted!");
-  }
-};
+    // Submit form if no errors
+    if (Object.keys(errors).length === 0) {
+      // TODO: Submit form
+      console.log("Form submitted!");
+    }
+  };
 
 
   return(
     <div className="page-container">
-       <Link to="/settings" className="back-button"><FaArrowLeft size={25} color="#FFF" /></Link>
+      <Link to="/settings" className="back-button"><FaArrowLeft size={25} color="#FFF" /></Link>
       <div className="top-container">
         <div className="profile-picture">
-          <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg" alt="Profile" width="200" height="200" style={{ borderRadius: "5px" }} />
+          <img src={picture || "https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg"} alt="Profile" width="200" height="200" style={{ borderRadius: "5px" }} />
         </div>
         <div className="change-picture-container">
-          <button className="change-picture-button">
+          <label htmlFor="picture-upload" className="change-picture-button">
             <span className="change-picture-text">Change Picture</span>
-          </button>
+            <input type="file" id="picture-upload" name="picture-upload" accept="image/*" onChange={handlePictureChange} />
+          </label>
+          
         </div>
       </div>
 

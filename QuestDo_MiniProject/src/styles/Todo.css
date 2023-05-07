@@ -1,0 +1,29 @@
+.Todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #8758ff;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-family: 'Sanchez', serif;
+  }
+  
+  .fa-trash {
+    margin-left: 0.75rem;
+    margin-right: 1rem;
+  }
+  
+  .completed {
+    color: #c5aeff;
+    text-decoration: line-through;
+  }
+
+  @media (max-width: 600px) {
+    .Todo{
+      padding: 0.75rem ;
+    }
+  }
