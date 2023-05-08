@@ -85,14 +85,20 @@
 }
 
 .xp-button{
-  background-color: #a6a90e;
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 10px; 
-    cursor: pointer;
-    font-family: 'Sanchez', serif;
+  background: linear-gradient(to bottom, #a6a90e 0%, #8f930b 100%);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+  font-family: 'Sanchez', serif;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease;
+}
+
+.xp-button:hover{
+  background-color: #ffffff;
 }
