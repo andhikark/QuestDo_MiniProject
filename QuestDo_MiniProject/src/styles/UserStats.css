@@ -83,3 +83,16 @@
     width: 120px;
     border-radius: 10px;
 }
+
+.xp-button{
+  background-color: #a6a90e;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px; 
+    cursor: pointer;
+    font-family: 'Sanchez', serif;
+}
