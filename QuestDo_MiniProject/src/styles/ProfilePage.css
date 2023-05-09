@@ -123,3 +123,33 @@
         margin-right: 20px;
       }
   }
+
+  .ProfileDetailsBox {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  padding: 5rem;
+  margin-right: 15vw;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  background-color: #5D2E8C;
+  text-align: left;
+  border: 1px solid #333;
+}
+
+.ProfileDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: 'Sanchez', serif;
+  text-align: left;
+}
+
+.ProfileDetailsBox span {
+  background-color: #333;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}

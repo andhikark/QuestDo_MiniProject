@@ -13,7 +13,13 @@ function ProfilePage() {
         <div className="Username">
           <span>CapyBara</span>
         </div>
-          
+        <div className="ProfileDetailsBox">
+          <div className="ProfileDetails">
+            <span>Email: capybara@example.com</span>
+            <span>Tasks Completed: 10</span>
+            <span>Joined on: January 1, 2023</span>
+          </div>
+        </div> 
       </div>
     </div>
   );
