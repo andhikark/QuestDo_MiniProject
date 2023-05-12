@@ -12,6 +12,8 @@
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+    const [username, setUsername] = useState("");
+    const [usernameError, setUsernameError] = useState(false);
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -39,7 +41,15 @@
       }
       setConfirmPasswordError(false);
 
+      // Username validation
+    if (username.length < 4) {
+      setUsernameError(true);
+      return;
+    }
+    setUsernameError(false);
+
       // Submit the form
+      console.log("Username:", username);
       console.log("Email:", email);
       console.log("Password:", password);
       console.log("Confirm Password:", confirmPassword);
@@ -50,6 +60,11 @@
         <Link to="/" className="back-button"><FaArrowLeft size={25} color="#FFF" /></Link>
         <div className="sign-title">QuestDo</div>
         <form className="sign-form" onSubmit={handleSubmit}>
+          <div className="input-container">
+            <label>Username:</label>
+            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+            {usernameError && <span className="error-message">Please enter a valid username</span>}
+          </div>
           <div className="input-container">
             <label>Email:</label>
             <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required />

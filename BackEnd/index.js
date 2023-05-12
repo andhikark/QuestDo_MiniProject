@@ -3,10 +3,8 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
-const app = express();
 
-app.use(cors());
-const port = 5173;
+
 
 const connection = mysql.createConnection({
 	host: "server2.bsthun.com",
@@ -16,15 +14,20 @@ const connection = mysql.createConnection({
 	database: "lab_blank01_h3ceqz",
 });
 
-connection.connect((error) => {
-	if (error) {
-		console.error("Error connecting to database:", error);
-		return;
-	}
+connection.connect(() => {
 	console.log("Database is connected");
 });
+global.connection = connection;
+
+const app = express();
+app.use(cors());
+const port = 5173;
 
 app.use(bodyParser.json({ type: "application/json" }));
+
+
+//Routes
+
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
