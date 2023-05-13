@@ -28,6 +28,28 @@ app.use(bodyParser.json({ type: "application/json" }));
 
 //Routes
 
+//user register
+app.post("/register", (req, res) => {
+	const username = req.body.username;
+	const password = req.body.password;
+	saltRounds = 10;
+	hash = bcrypt.hashSync(password, saltRounds);
+	var sql = `INSERT INTO users (username, password, hashed)
+		  VALUES (?, ?, ?)`;
+	connection.query(sql, [username, password, hash], (err, rows) => {
+	  if (err) {
+		return res.json({
+		  success: false,
+		  error: err,
+		  message: "An error occurred while registering the user.",
+		});
+	  }
+	  return res.json({
+		success: true,
+		message: "User registered successfully.",
+	  });
+	});
+  });
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
