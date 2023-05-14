@@ -141,8 +141,8 @@ app.get('/task', (req, res) => {
 	});
 });
 
-// update task
-app.put('/task/:id', (req, res) => {
+// complete a task
+app.patch('/task/:id', (req, res) => {
     const now = new Date();
     const completed_at = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
     const sql = mysql.format(
@@ -165,10 +165,10 @@ app.put('/task/:id', (req, res) => {
 });
 
 //delete task 
-app.delete('/task/:taskId', (req, res) => {
+app.delete('/task/:id', (req, res) => {
     const taskId = req.params.taskId;
     const sql = 'DELETE FROM tasks WHERE id = ?';
-    connection.query(sql, [taskId], (err, result) => {
+    connection.query(sql, [id], (err, result) => {
         if (err) {
             return res.json({
                 success: false,
@@ -182,6 +182,30 @@ app.delete('/task/:taskId', (req, res) => {
         });
     });
 });
+
+// update task name
+app.put('/task/:id', (req, res) => {
+    const name = req.body.name;
+    const taskId = req.params.id;
+    const sql = mysql.format(
+        'UPDATE tasks SET name = ? WHERE id = ?',
+        [name, taskId]
+    );
+    connection.query(sql, (err, result) => {
+        if (err) {
+            return res.json({
+                success: false,
+                data: null,
+                error: err.message,
+            });
+        }
+        res.json({
+            success: true,
+            message: "Task name updated successfully",
+        });
+    });
+});
+
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);

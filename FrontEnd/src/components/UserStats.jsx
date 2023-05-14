@@ -81,7 +81,6 @@ function UserStats() {
           </div>
         </div>
       </div>
-      
     </div>
   );
 }
