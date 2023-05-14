@@ -24,19 +24,12 @@ function MyAccountPage () {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Regex for email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     // Validate form inputs
     let errors = {};
     if (!username) {
       errors.username = "Username is required";
     }
-    if (!email) {
-      errors.email = "Email is required";
-    } else if (!emailRegex.test(email)) {
-      errors.email = "Invalid email format";
-    }
+    
     setFormErrors(errors);
 
     // Submit form if no errors
@@ -70,12 +63,6 @@ function MyAccountPage () {
             <input type="text" id="username" name="username" value={username} onChange={handleUsernameChange} />
             {formErrors.username && <span className="error">{formErrors.username}</span>}
           </div>
-          <div className="form-group">
-            <label htmlFor="email">Change Email:</label>
-            <input type="email" id="email" name="email" value={email} onChange={handleEmailChange} />
-            {formErrors.email && <span className="error">{formErrors.email}</span>}
-          </div>
-
           <button type="submit" className="save-button">Save</button>
         </form>
       </div>
