@@ -3,6 +3,7 @@
   import { FaArrowLeft } from "react-icons/fa";
   import '../styles/SignInPage.css';
   import { Link } from 'react-router-dom';
+  import axios from "axios"; 
 
   function SignInPage (){
 
@@ -15,9 +16,16 @@
     const [username, setUsername] = useState("");
     const [usernameError, setUsernameError] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit =  async (e) => {
       e.preventDefault();
-
+      axios
+.post("/signin", {
+      username,
+      email,
+      password,
+    })
+    .then((response) => {
+      console.log(response.data);
       // Email validation using regex
       const emailRegex = /^\S+@\S+\.\S+$/;
       if (!emailRegex.test(email)) {
@@ -42,18 +50,18 @@
       setConfirmPasswordError(false);
 
       // Username validation
-    if (username.length < 4) {
-      setUsernameError(true);
-      return;
-    }
-    setUsernameError(false);
+      if (username.length < 4) {
+        setUsernameError(true);
+        return;
+      }
+      setUsernameError(false);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
-      // Submit the form
-      console.log("Username:", username);
-      console.log("Email:", email);
-      console.log("Password:", password);
-      console.log("Confirm Password:", confirmPassword);
-    }
+    
+};
 
     return(
       <div className="page-container">

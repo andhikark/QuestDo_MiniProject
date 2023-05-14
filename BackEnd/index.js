@@ -30,37 +30,36 @@ app.use(bodyParser.json({ type: "application/json" }));
 
 //user register
 app.post("/signin", async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-	const email = req.body.email;
-	const hp = 500;
-	const xp = 0;
-	const level = 1;
-	const task_completed = 0;
-	const now = new Date();
+    const { username, email, password } = req.body;
+    const hp = 500;
+    const xp = 0;
+    const level = 1;
+    const task_completed = 0;
+    const now = new Date();
     const created_at = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
-
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const sql = mysql.format(
+  
+    try {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const sql = mysql.format(
         "INSERT INTO users (username, email,hashed_password,hp,xp,level,joined_at,task_completed) VALUES (?,?,?,?,?,?,?,?)",
-        [username, email ,hashedPassword,hp,xp,level,created_at,task_completed]
-    );
-    connection.query(sql, (err, result) => {
-        if (err) {
-            return res.json({
-                success: false,
-                data: null,
-                error: err.message,
-            });
-        }
-        res.json({
-            success: true,
-            message: "Registration success",
-        });
-    });
-});
-
+        [username, email, hashedPassword, hp, xp, level, created_at, task_completed]
+      );
+  
+      const result = await connection.query(sql);
+      res.json({
+        success: true,
+        message: "Registration success",
+      });
+    } catch (error) {
+      console.error(error);
+      res.json({
+        success: false,
+        data: null,
+        error: error.message,
+      });
+    }
+  });
+  
 // login endpoint 
 app.post("/", async (req, res) => {
     const username = req.body.username;
