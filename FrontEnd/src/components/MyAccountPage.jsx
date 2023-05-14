@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/MyAccountPage.css'
 
 function MyAccountPage () {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [formErrors, setFormErrors] = useState({});
-  const [picture, setPicture] = useState(null);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePictureChange = (event) => {
-    setPicture(URL.createObjectURL(event.target.files[0]));
-  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,8 +25,15 @@ function MyAccountPage () {
 
     // Submit form if no errors
     if (Object.keys(errors).length === 0) {
-      // TODO: Submit form
-      console.log("Form submitted!");
+      axios.put(`/myaccount/${userId}`, { newUsername: username })
+        .then(response => {
+          console.log(response.data.message);
+          // TODO: Show success message to the user
+        })
+        .catch(error => {
+          console.error(error);
+          // TODO: Show error message to the user
+        });
     }
   };
 
@@ -45,7 +43,7 @@ function MyAccountPage () {
       <Link to="/settings" className="back-button"><FaArrowLeft size={25} color="#FFF" /></Link>
       <div className="top-container">
         <div className="profile-picture">
-          <img src={picture || "https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg"} alt="Profile" width="200" height="200" style={{ borderRadius: "5px" }} />
+          <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1.jpg.optimal.jpg" alt="Profile" width="200" height="200" style={{ borderRadius: "5px" }} />
         </div>
       </div>
 
@@ -56,7 +54,7 @@ function MyAccountPage () {
             <input type="text" id="username" name="username" value={username} onChange={handleUsernameChange} />
             {formErrors.username && <span className="error">{formErrors.username}</span>}
           </div>
-          <button type="submit" className="save-button">Save</button>
+          <button type="button" className="save-button" onClick={handleSubmit}>Save</button>
         </form>
       </div>
     </div>
