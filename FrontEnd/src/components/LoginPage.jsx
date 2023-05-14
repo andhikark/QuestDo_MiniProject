@@ -26,7 +26,7 @@ function Login() {
 
   const getData = async () => {
     try {
-      const response = await Axios.post("http://localhost:5173/", {
+      const response = await Axios.post("http://localhost:8080/", {
         username: username,
         password: password,
       });
@@ -48,7 +48,7 @@ function Login() {
         <button className="login-button" onClick={handleTabClick}>Log in </button>
       </div>
       <div className="login-message">
-        <span> Or </span>
+        <span> or </span>
       </div>
       <div className="login-buttons">
         <Link to="/signin" className="signin-button">Sign in</Link>

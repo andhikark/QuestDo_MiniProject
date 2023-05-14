@@ -21,7 +21,7 @@ global.connection = connection;
 
 const app = express();
 app.use(cors());
-const port = 5173;
+const port = 8080;
 
 app.use(bodyParser.json({ type: "application/json" }));
 
@@ -224,7 +224,6 @@ app.put('/myaccount/:id', (req, res) => {
         });
     });
 });
-
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);

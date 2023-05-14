@@ -19,7 +19,7 @@
     const handleSubmit =  async (e) => {
       e.preventDefault();
       axios
-.post("/signin", {
+.post("http://localhost:8080/signin", {
       username,
       email,
       password,
