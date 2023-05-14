@@ -1,24 +1,41 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import Axios from 'axios';
 import '../styles/LoginPage.css';
 
 function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
 
-  const handleLogin = async () => {
+  const handleTabClick = async (event) => {
+    event.preventDefault(); 
     try {
-      const response = await axios.post('/', { username, password });
+      const response = await getData();
+      console.log(response.data.success);
       if (response.data.success) {
-        setLoggedIn(true);
-        // Redirect to /profile here
+          navigate(`/profile`);
       } else {
-        console.log(response.data.message);
+        window.alert("Password is wrong");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const response = await Axios.post("http://localhost:5173/", {
+        username: username,
+        password: password,
+      });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.error(error.message);
+      console.error(error.response.status);
+      throw error;
     }
   };
 
@@ -28,10 +45,10 @@ function Login() {
       <div className="login-inputs">
         <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
         <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <Link to="/profile" className="login-button">Log in </Link>
+        <button className="login-button" onClick={handleTabClick}>Log in </button>
       </div>
       <div className="login-message">
-        {loggedIn ? 'Welcome back!' : 'Let’s make your task feel like a game!'}
+        <span> Or </span>
       </div>
       <div className="login-buttons">
         <Link to="/signin" className="signin-button">Sign in</Link>

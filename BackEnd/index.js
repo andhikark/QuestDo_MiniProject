@@ -61,50 +61,42 @@ app.post("/signin", async (req, res) => {
   });
   
 // login endpoint 
-app.post("/", async (req, res) => {
+app.post("/", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-
-    const sql = mysql.format(
-        "SELECT * FROM users WHERE username = ?",
-        [username]
-    );
-    console.log("DEBUG: /basic/login => " + sql);
-    connection.query(sql, async (err, rows) => {
-        if (err) {
+  
+    var sql = mysql.format("SELECT * FROM users WHERE username = ?", [username]);
+  
+    connection.query(sql, [username, password], (err, rows) => {
+      if (err) {
+        return res.json({
+          success: false,
+        });
+      }
+      numRows = rows.length;
+      console.log(rows);
+      if (numRows != 0) {
+        bcrypt.compare(password, rows[0].hashed_password).then(function (result) {
+          if (result) {
             return res.json({
-                success: false,
-                data: null,
-                error: err.message,
+              success: true,
+              message: "Authentication Success",
             });
-        }
-
-        numUsers = rows.length;
-        if (numUsers == 0) {
-            res.json({
-                success: false,
-                message: "User does not exist",
+          } else {
+            return res.json({
+              success: false,
+              message: "Authentication Failed - Wrong password",
             });
-        } else {
-            const hashedPassword = rows[0].hashed_password;
-            const validPassword = await bcrypt.compare(password, hashedPassword);
-            if (validPassword) {
-                res.json({
-                    success: true,
-                    message: "Login credential is correct",
-                    user: {
-                        username: rows[0].username,
-                    },
-                });
-            } else {
-                res.json({
-                    success: false,
-                    message: "Password is incorrect",
-                });
-            }
-        }
+          }
+        });
+      } else {
+        return res.json({
+          success: false,
+          message: "Authentication Failed - No such user in the database",
+        });
+      }
     });
-});
+  });
 
 //create new task
 app.post('/task',async (req, res) => {
@@ -201,6 +193,34 @@ app.put('/task/:id', (req, res) => {
         res.json({
             success: true,
             message: "Task name updated successfully",
+        });
+    });
+});
+
+app.put('/myaccount/:id', (req, res) => {
+    const userID = req.params.id;
+    const { newUsername } = req.body;
+    const sql = mysql.format(
+        'UPDATE users SET username = ? WHERE id = ?',
+        [newUsername, userID]
+    );
+    connection.query(sql, (err, result) => {
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                data: null,
+                error: err.message,
+            });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+        res.json({
+            success: true,
+            message: "Username updated successfully",
         });
     });
 });
