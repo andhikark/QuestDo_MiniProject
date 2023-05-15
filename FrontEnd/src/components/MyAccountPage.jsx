@@ -14,7 +14,7 @@ function MyAccountPage () {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
     // Validate form inputs
     let errors = {};
     if (!username) {
@@ -22,21 +22,26 @@ function MyAccountPage () {
     }
     
     setFormErrors(errors);
-
+  
     // Submit form if no errors
     if (Object.keys(errors).length === 0) {
-      axios.put(`http://127.0.0.1:8080/myaccount`, { newUsername: username })
-        .then(response => {
-          console.log(response.data.message);
-          
-        })
-        .catch(error => {
-          console.error(error);
-          
-        });
+      const token = getCookie("user"); // Get the JWT token from the cookie
+      axios.put(
+        `http://localhost:8080/myaccount`,
+        { newUsername: username },
+        { headers: { Authorization: `Bearer ${token}` } } // Include the JWT token in the headers
+      )
+      .then(response => {
+        console.log(response.data.message);
+        // Handle success
+      })
+      .catch(error => {
+        console.error(error);
+        // Handle error
+      });
     }
   };
-
+  
 
   return(
     <div className="page-container">
