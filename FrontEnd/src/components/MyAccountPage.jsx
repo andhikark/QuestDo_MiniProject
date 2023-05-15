@@ -25,9 +25,11 @@ function MyAccountPage () {
     setFormErrors(errors);
     const token = Cookies.get('user');
 
+    console.log('Token:', token);
+    console.log('New Username:', username);
+
     // Submit form if no errors
     if (Object.keys(errors).length === 0) {
-      const token = getCookie("user");
       axios.put(
         `http://localhost:8080/myaccount`,
         { newUsername: username },
@@ -61,7 +63,7 @@ function MyAccountPage () {
             <input type="text" id="username" name="username" value={username} onChange={handleUsernameChange} />
             {formErrors.username && <span className="error">{formErrors.username}</span>}
           </div>
-          <button type="button" className="save-button" onClick={handleSubmit}>Save</button>
+          <button type="submit" className="save-button">Save</button>
         </form>
       </div>
     </div>

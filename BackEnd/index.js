@@ -6,8 +6,6 @@ const cors = require('cors');
 var jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 
-
-
 const connection = mysql.createConnection({
 	host: "server2.bsthun.com",
 	port: "6105",
@@ -263,17 +261,30 @@ app.get('/check', (req, res) => {
 
 app.get('/user', (req, res) => {
     const token = req.cookies.user;
-	var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
   
-    connection.query(`SELECT * FROM users WHERE id = ?`,[decoded.userId], (error, results) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send('Error retrieving user data');
-      } else {
-        res.send(results[0]);
-      }
-    });
+    if (!token) {
+      return res.status(401).send('Unauthorized: No token provided');
+    }
+  
+    try {
+      const decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
+      const userId = decoded.userId;
+  
+      connection.query(`SELECT * FROM users WHERE id = ?`,[userId], (error, results) => {
+        if (error) {
+          console.error(error);
+          res.status(500).send('Error retrieving user data');
+        } else if (results.length === 0) {
+          res.status(404).send('User not found');
+        } else {
+          res.send(results[0]);
+        }
+      });
+    } catch (err) {
+      res.status(401).send('Unauthorized: Invalid token');
+    }
   });
+  
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);

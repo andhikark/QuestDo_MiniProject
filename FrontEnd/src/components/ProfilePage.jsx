@@ -8,15 +8,17 @@ function ProfilePage() {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8080/user') 
+    axios.get('http://127.0.0.1:8080/user', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }) 
       .then(response => {
         console.log(response.data);
         setUserData(response.data);
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+        console.log(error.response);
+      });
   }, []);
   
-
   return (
     <div className="Home">
       <NavBar/>
