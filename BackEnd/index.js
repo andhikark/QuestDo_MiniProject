@@ -3,6 +3,8 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
+var jwt = require("jsonwebtoken");
+const cookieParser = require('cookie-parser');
 
 
 
@@ -24,7 +26,7 @@ app.use(cors());
 const port = 8080;
 
 app.use(bodyParser.json({ type: "application/json" }));
-
+app.use(cookieParser());
 
 //Routes
 
@@ -62,40 +64,51 @@ app.post("/signin", async (req, res) => {
   
 // login endpoint 
 app.post("/", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-  
-    var sql = mysql.format("SELECT * FROM users WHERE username = ?", [username]);
-  
-    connection.query(sql, [username, password], (err, rows) => {
-      if (err) {
-        return res.json({
-          success: false,
-        });
-      }
-      numRows = rows.length;
-      console.log(rows);
-      if (numRows != 0) {
-        bcrypt.compare(password, rows[0].hashed_password).then(function (result) {
-          if (result) {
-            return res.json({
-              success: true,
-              message: "Authentication Success",
-            });
-          } else {
-            return res.json({
-              success: false,
-              message: "Authentication Failed - Wrong password",
-            });
-          }
-        });
-      } else {
-        return res.json({
-          success: false,
-          message: "Authentication Failed - No such user in the database",
-        });
-      }
-    });
+  const username = req.body.username;
+	const password = req.body.password;
+
+	var sql = mysql.format("SELECT * FROM users WHERE username = ?", [username]);
+	connection.query(sql, (err, rows) => {
+		if (err) {
+			return res.json({
+				success: false,
+				data: null,
+				error: err.message,
+			});
+		}
+
+		numRows = rows.length;
+		if (numRows == 0) {
+			res.json({
+				success: false,
+				message: "Username not found in the system",
+			});
+		} else {
+			const valid = bcrypt.compare(password, rows[0].hashed_password);
+
+			if (valid) {
+				const token = jwt.sign(
+					{
+						userId: rows[0].id,
+					},
+					"ZJGX1QL7ri6BGJWj3t",
+					{ expiresIn: "1h" }
+				);
+				res.cookie("user", token);
+
+				res.json({
+					success: true,
+					message: "Login credential is correct",
+					user: rows[0],
+				});
+			} else {
+				res.json({
+					success: true,
+					message: "Login credential is incorrect",
+				});
+			}
+		}
+	});
   });
 
 //create new task
@@ -197,12 +210,14 @@ app.put('/task/:id', (req, res) => {
     });
 });
 
-app.put('/myaccount/:id', (req, res) => {
-    const userID = req.params.id;
+//update username
+app.put('/myaccount', (req, res) => {
+    const token = req.cookies.user;
+	  var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
     const { newUsername } = req.body;
     const sql = mysql.format(
         'UPDATE users SET username = ? WHERE id = ?',
-        [newUsername, userID]
+        [newUsername, decoded.userId]
     );
     connection.query(sql, (err, result) => {
         if (err) {
@@ -223,6 +238,27 @@ app.put('/myaccount/:id', (req, res) => {
             message: "Username updated successfully",
         });
     });
+});
+
+//check login
+app.get('/check', (req, res) => {
+  const token = req.cookies.user;
+	var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
+	
+	console.log(decoded);
+
+	if (decoded) {
+		res.json({
+			success: true,
+			message: "User is logged in with ID: " + decoded.userId,
+		});
+		
+	} else {
+		res.json({
+			success: false,
+			message: "User is not logged in",
+		});
+	}
 });
 
 app.listen(port, () => {

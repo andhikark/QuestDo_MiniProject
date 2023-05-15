@@ -25,14 +25,14 @@ function MyAccountPage () {
 
     // Submit form if no errors
     if (Object.keys(errors).length === 0) {
-      axios.put(`/myaccount/${userId}`, { newUsername: username })
+      axios.put(`http://127.0.0.1:8080/myaccount`, { newUsername: username })
         .then(response => {
           console.log(response.data.message);
-          // TODO: Show success message to the user
+          
         })
         .catch(error => {
           console.error(error);
-          // TODO: Show error message to the user
+          
         });
     }
   };
