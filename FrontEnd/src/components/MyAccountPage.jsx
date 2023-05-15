@@ -3,6 +3,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/MyAccountPage.css'
+import Cookies from 'js-cookie';
 
 function MyAccountPage () {
   const [username, setUsername] = useState("");
@@ -22,14 +23,15 @@ function MyAccountPage () {
     }
     
     setFormErrors(errors);
-  
+    const token = Cookies.get('user');
+
     // Submit form if no errors
     if (Object.keys(errors).length === 0) {
-      const token = getCookie("user"); // Get the JWT token from the cookie
+      const token = getCookie("user");
       axios.put(
         `http://localhost:8080/myaccount`,
         { newUsername: username },
-        { headers: { Authorization: `Bearer ${token}` } } // Include the JWT token in the headers
+        { headers: { Authorization: `Bearer ${token}` } } 
       )
       .then(response => {
         console.log(response.data.message);

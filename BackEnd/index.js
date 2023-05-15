@@ -213,7 +213,7 @@ app.put('/task/:id', (req, res) => {
 //update username
 app.put('/myaccount', (req, res) => {
     const token = req.cookies.user;
-	  var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
+	var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
     const { newUsername } = req.body;
     const sql = mysql.format(
         'UPDATE users SET username = ? WHERE id = ?',
@@ -260,6 +260,20 @@ app.get('/check', (req, res) => {
 		});
 	}
 });
+
+app.get('/user', (req, res) => {
+    const token = req.cookies.user;
+	var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
+  
+    connection.query(`SELECT * FROM users WHERE id = ?`,[decoded.userId], (error, results) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send('Error retrieving user data');
+      } else {
+        res.send(results[0]);
+      }
+    });
+  });
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);

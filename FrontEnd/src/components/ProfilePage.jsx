@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import "../styles/ProfilePage.css";
 import UserStats from "./UserStats";
 import NavBar from "./Navbar";
 
-
 function ProfilePage() {
-  return (  
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8080/user') 
+      .then(response => {
+        console.log(response.data);
+        setUserData(response.data);
+      })
+      .catch(error => console.error(error));
+  }, []);
+  
+
+  return (
     <div className="Home">
       <NavBar/>
       <div className="Container">
         <UserStats />
         <div className="Username">
-          <span>CapyBara</span>
+          <span>{userData?.username}</span>
         </div>
         <div className="ProfileDetailsBox">
           <div className="ProfileDetails">
-            <span>Email: capybara@example.com</span>
-            <span>Tasks Completed: 10</span>
-            <span>Joined on: January 1, 2023</span>
+            <span>Email: {userData?.email}</span>
+            <span>Tasks Completed: {userData?.task_completed}</span>
+            <span>Joined on: {userData?.joined_at}</span>
           </div>
-        </div> 
+        </div>
       </div>
     </div>
   );
