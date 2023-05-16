@@ -61,12 +61,12 @@ app.post("/signin", async (req, res) => {
   });
   
 // login endpoint 
-app.post("/", (req, res) => {
+app.post("/", async (req, res) => {
   const username = req.body.username;
 	const password = req.body.password;
 
 	var sql = mysql.format("SELECT * FROM users WHERE username = ?", [username]);
-	connection.query(sql, (err, rows) => {
+	connection.query(sql, async (err, rows) => {
 		if (err) {
 			return res.json({
 				success: false,
@@ -82,7 +82,7 @@ app.post("/", (req, res) => {
 				message: "Username not found in the system",
 			});
 		} else {
-			const valid = bcrypt.compare(password, rows[0].hashed_password);
+			const valid = await bcrypt.compare(password, rows[0].hashed_password);
 
 			if (valid) {
 				const token = jwt.sign(
@@ -107,7 +107,8 @@ app.post("/", (req, res) => {
 			}
 		}
 	});
-  });
+});
+
 
 //create new task
 app.post('/task',async (req, res) => {

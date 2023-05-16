@@ -13,7 +13,7 @@ function MyAccountPage () {
     setUsername(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
   
     // Validate form inputs
@@ -30,19 +30,18 @@ function MyAccountPage () {
 
     // Submit form if no errors
     if (Object.keys(errors).length === 0) {
-      axios.put(
-        `http://localhost:8080/myaccount`,
-        { newUsername: username },
-        { headers: { Authorization: `Bearer ${token}` } } 
-      )
-      .then(response => {
+      try {
+        const response = await axios.put(
+          `http://localhost:8080/myaccount`,
+          { newUsername: username },
+          { headers: { Authorization: `Bearer ${token}` } } 
+        );
         console.log(response.data.message);
         // Handle success
-      })
-      .catch(error => {
+      } catch (error) {
         console.error(error);
         // Handle error
-      });
+      }
     }
   };
   
