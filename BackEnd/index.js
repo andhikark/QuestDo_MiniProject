@@ -269,7 +269,7 @@ app.get('/profile', (req, res) => {
     }
   
     try {
-      const decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
+      var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
       connection.query(`SELECT * FROM users WHERE id = ?`,[decoded.userId], (error, results) => {
         if (error) {
           console.error(error);

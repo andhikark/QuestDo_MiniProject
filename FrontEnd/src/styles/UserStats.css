@@ -8,7 +8,7 @@
 }
 
 .profile-pic {
-    width: 10%;
+    width: 20%;
     height: 50%;
     margin-right: 2%;
     border-radius: 10px;
@@ -27,7 +27,7 @@
   display: flex;
   flex-direction: column;
   color: white;
-  font-size: 23px ;
+  font-size: 2rem ;
   width: 80%;
   font-family: 'Sanchez', serif;
 }
@@ -41,7 +41,7 @@
 }
 
 .bar {
-  height: 30px;
+  height: 1rem;
   background-color: #F92222;
   border-radius: 10px;
   position: relative;
@@ -80,7 +80,7 @@
 .level-bar{
     background-color: #B2B8F4;
     padding-left: 15px;
-    width: 120px;
+    width: 2rem;
     border-radius: 10px;
 }
 
