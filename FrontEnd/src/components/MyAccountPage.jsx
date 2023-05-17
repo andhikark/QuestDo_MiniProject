@@ -23,9 +23,9 @@ function MyAccountPage () {
     }
     
     setFormErrors(errors);
-    const token = Cookies.get('user');
+    const userToken = Cookies.get('user');
 
-    console.log('Token:', token);
+    console.log('Token:', userToken);
     console.log('New Username:', username);
 
     // Submit form if no errors
@@ -34,7 +34,7 @@ function MyAccountPage () {
         const response = await axios.put(
           `http://localhost:8080/myaccount`,
           { newUsername: username },
-          { headers: { Authorization: `Bearer ${token}` } } 
+          { headers: { Authorization: `Bearer ${userToken}` } } 
         );
         console.log(response.data.message);
         // Handle success

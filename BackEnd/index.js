@@ -211,7 +211,7 @@ app.put('/task/:id', (req, res) => {
 
 //update username
 app.put('/myaccount', (req, res) => {
-    const token = req.cookies.user;
+  const token = req.cookies.user;
 	var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
     const { newUsername } = req.body;
     const sql = mysql.format(
@@ -260,7 +260,8 @@ app.get('/check', (req, res) => {
 	}
 });
 
-app.get('/user', (req, res) => {
+//data
+app.get('/profile', (req, res) => {
     const token = req.cookies.user;
   
     if (!token) {
@@ -269,9 +270,7 @@ app.get('/user', (req, res) => {
   
     try {
       const decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
-      const userId = decoded.userId;
-  
-      connection.query(`SELECT * FROM users WHERE id = ?`,[userId], (error, results) => {
+      connection.query(`SELECT * FROM users WHERE id = ?`,[decoded.userId], (error, results) => {
         if (error) {
           console.error(error);
           res.status(500).send('Error retrieving user data');

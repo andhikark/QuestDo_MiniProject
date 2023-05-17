@@ -3,12 +3,13 @@ import axios from 'axios';
 import "../styles/ProfilePage.css";
 import UserStats from "./UserStats";
 import NavBar from "./Navbar";
-
+import Cookies from 'js-cookie';
 function ProfilePage() {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8080/user', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }) 
+    const userToken = Cookies.get('user');
+    axios.get('http://127.0.0.1:8080/profile', { headers: { Authorization: `Bearer ${userToken}` } }) 
       .then(response => {
         console.log(response.data);
         setUserData(response.data);
