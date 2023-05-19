@@ -7,19 +7,18 @@ function NavBar() {
 
   const handleClick = () => setClick(!click);
   return (
-    <>
       <nav className="navbar">
         <div className="nav-container">
-          <NavLink exact to="/profile" className="nav-logo">
+          <NavLink exact="true" to="/profile" className="nav-logo">
             QuestDo
           </NavLink>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
               <NavLink
-                exact
+                exact="true"
                 to="/profile"
-                activeClassName="active"
+                activeclassname="active"
                 className="nav-links"
                 onClick={handleClick}
               >
@@ -28,9 +27,9 @@ function NavBar() {
             </li>
             <li className="nav-item">
               <NavLink
-                exact
+                exact="true"
                 to="/task"
-                activeClassName="active"
+                activeclassname="active"
                 className="nav-links"
                 onClick={handleClick}
               >
@@ -39,9 +38,9 @@ function NavBar() {
             </li>
             <li className="nav-item">
               <NavLink
-                exact
+                exact="true"
                 to="/settings"
-                activeClassName="active"
+                activeclassname="active"
                 className="nav-links"
                 onClick={handleClick}
               >
@@ -50,9 +49,9 @@ function NavBar() {
             </li>
             <li className="nav-item">
               <NavLink
-                exact
+                exact="true"
                 to="/about"
-                activeClassName="active"
+                activeclassname="active"
                 className="nav-links"
                 onClick={handleClick}
               >
@@ -65,7 +64,6 @@ function NavBar() {
           </div>
         </div>
       </nav>
-    </>
   );
 }
 

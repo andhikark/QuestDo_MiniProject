@@ -4,15 +4,19 @@ import "../styles/ProfilePage.css";
 import UserStats from "./UserStats";
 import NavBar from "./Navbar";
 import Cookies from 'js-cookie';
+
 function ProfilePage() {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const userToken = Cookies.get('user');
-    axios.get('http://127.0.0.1:8080/profile', { headers: { Authorization: `Bearer ${userToken}` } }) 
+    axios.get('http://127.0.0.1:8080/profile', { 
+      headers: { Authorization: `Bearer ${userToken}`,
+      withCredentials: true} 
+    }) 
       .then(response => {
+        setUserData(response.data); 
         console.log(response.data);
-        setUserData(response.data);
       })
       .catch(error => {
         console.error(error);

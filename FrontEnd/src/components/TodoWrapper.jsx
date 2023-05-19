@@ -5,16 +5,18 @@ import { v4 as uuidv4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
 import axios from 'axios';
 import "../styles/TodoWrapper.css";
+import Cookies from 'js-cookie';
 
 export const TodoWrapper = () => {
   const [todos, setTodos] =   useState([]);
 
   const addTodo = (todo) => {
+    const token = Cookies.get('user'); 
     const now = new Date();
     const created_at = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
     const completed = 0;
     const taskData = {
-      user_id: '<user_id>', // Replace with the actual user ID
+      user_id: token, // Replace with the actual user ID
       name: todo,
       created_at,
       completed,

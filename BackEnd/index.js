@@ -19,8 +19,13 @@ connection.connect(() => {
 });
 global.connection = connection;
 
+const corsOptions = {
+  origin: 'http://localhost:5173', 
+  credentials: true, 
+};
+
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
 const port = 8080;
 
 app.use(bodyParser.json({ type: "application/json" }));
@@ -70,7 +75,7 @@ app.post("/", async (req, res) => {
 		if (err) {
 			return res.json({
 				success: false,
-				data: null,
+				data: null, 
 				error: err.message,
 			});
 		}
