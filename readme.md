@@ -135,3 +135,78 @@ Example
 
 ```
 
+### Create todo
+
+
+#### URL
+`POST /task`
+
+ 
+#### Request Body 
+| Parameter | Type | Description |
+|----------|:-------------:|:------|
+| user_id | string | user id |
+| name | string | todo anme |
+
+
+#### Success
+Response
+
+###### Status Code
+` 200`  Task added success
+
+Example
+```
+    {
+    "success": true,
+    "message": "Task added success"
+}
+
+```
+
+### Delete todo 
+
+#### URL
+`DELETE /task/:id`
+
+### Parameter
+| Parameter | Type | Description |
+|----------|:-------------:|:------|
+|id|String| id of todo
+ 
+#### Request Body 
+No Request Body
+
+#### Success
+Response
+
+###### Status Code
+` 200`  Task deleted successfully
+
+no response body
+
+### editComment
+#### URL
+`PUT /task/:id`
+
+#### Request Body 
+| Parameter | Type | Description |
+|----------|:-------------:|:------|
+| name | string | name of edited toto  |
+
+#### Success
+
+###### Status Code
+` 200`  "Task name updated successfully"
+
+Response
+no response body
+
+Example
+```
+    {
+    "success": true,
+    "message": "Task name updated successfully"
+    }
+
+```
