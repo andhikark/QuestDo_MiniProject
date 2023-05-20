@@ -185,7 +185,7 @@ Response
 
 no response body
 
-### editComment
+### editTodo
 #### URL
 `PUT /task/:id`
 
@@ -238,7 +238,7 @@ Example
 ```
 
 
-### Update Username
+### Check Login 
 #### URL
 `GET /check`
 
@@ -261,7 +261,32 @@ Example
     }
 ```
 
-### profile
+### Update Username 
+#### URL
+`PUT /myaccount`
+
+#### Request Body 
+| Parameter | Type | Description |
+|----------|:-------------:|:------|
+| newUsername | string | new username  |
+
+#### Success
+
+###### Status Code
+` 200`  "Username updated successfully"
+
+Response
+no response body
+
+Example
+```
+   {
+    "success": true,
+    "message": "Username updated successfully"
+    }
+```
+
+### Profile
 `GET /profile`
 
 #### Request Body 
