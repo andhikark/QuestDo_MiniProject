@@ -52,8 +52,6 @@ Response
 <!-- STATUS BEHEAVIOR -->
 ` 200`  Login credential is correct
 
-## API endpoints
-
 #### Register
 <!-- Method /endpoint -->
 `POST /signin`
