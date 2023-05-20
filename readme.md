@@ -10,7 +10,6 @@ QuestDo is an innovative RPG-themed task management system called "QuestDo." It 
 - Notification and remainder
 
 ## Database schema
-You can put the database schema here
 ![Screenshot (19)](https://github.com/andhikark/QuestDo_MiniProject/assets/75937835/b724fcec-2cad-4776-ac7a-54ff32dab925)
 
 ## To run the frontend and backend in developing mode 
@@ -30,17 +29,17 @@ cd to backend and frontend then run.
 #### Request Body 
 | Parameter | Type | Description |
 |----------|:-------------:|:------|
-|usernameOrEmail|String|username Or Email
+|username|String|username 
 |password|String| password|
 
 
 Example
 ```
-   {
-     "usernameOrEmail" : "thistine",
-     "password" : "1234"
-   }
+{
+    "username" : "Hazuki",
+    "password" : "Hazuki123"
 
+}   
 
 ```
 
@@ -53,20 +52,4 @@ Response
 <!-- STATUS BEHEAVIOR -->
 ` 200`  login success
 
-| Parameter | Type | Description |
-|----------|:-------------:|:------|
-|email|String| user email
-|username|String| username
-|id|String| user id
 
-Example
-```
-{
-   "email":"tine@thistine.com",
-   "username":"thistine",
-   "id" : "1"
-}
-
-```
-<!-- This is the special action of your end point (for example, sending the token) -->
-**noted: If success, the Response will be sent with cookie named UserToken**
