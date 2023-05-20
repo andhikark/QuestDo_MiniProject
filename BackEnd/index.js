@@ -176,7 +176,7 @@ app.patch('/task/:id', (req, res) => {
 app.delete('/task/:id', (req, res) => {
     const taskId = req.params.taskId;
     const sql = 'DELETE FROM tasks WHERE id = ?';
-    connection.query(sql, [id], (err, result) => {
+    connection.query(sql, [taskId], (err, result) => {
         if (err) {
             return res.json({
                 success: false,
