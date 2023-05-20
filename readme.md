@@ -20,7 +20,7 @@ cd to backend and frontend then run.
 ```
 
 ## API endpoints
-
+### Login
 #### URL
 <!-- Method /endpoint -->
 `POST /login`
@@ -52,7 +52,7 @@ Response
 <!-- STATUS BEHEAVIOR -->
 ` 200`  Login credential is correct
 
-#### Register
+### Register
 <!-- Method /endpoint -->
 `POST /signin`
 
@@ -84,7 +84,7 @@ Response
 <!-- STATUS BEHEAVIOR -->
 ` 200`  Registration success
 
-#### getAllNotes
+### getAllTodo
 `GET /task`
 
 #### Request Body 
@@ -101,8 +101,8 @@ Response
 |----------|:-------------:|:------|
 | no parameter | Array of todo | all todo related to user |
 
-#### note
-the note object
+#### todo
+todo
 | Parameter | Type | Description |
 |----------|:-------------:|:------|
 | id | string | id of todo |
@@ -192,7 +192,7 @@ no response body
 #### Request Body 
 | Parameter | Type | Description |
 |----------|:-------------:|:------|
-| name | string | name of edited toto  |
+| name | string | name of edited todo  |
 
 #### Success
 
@@ -208,5 +208,102 @@ Example
     "success": true,
     "message": "Task name updated successfully"
     }
+
+```
+
+### Complete Todo
+#### URL
+`PATCH /task/:id`
+
+#### Request Body 
+| Parameter | Type | Description |
+|----------|:-------------:|:------|
+| id | string | id of todo   |
+
+#### Success
+
+###### Status Code
+` 200`  "Task  updated successfully"
+
+Response
+no response body
+
+Example
+```
+    {
+    "success": true,
+    "message": "Task updated successfully"
+    }
+
+```
+
+
+### Update Username
+#### URL
+`GET /check`
+
+#### Request Body 
+no request body
+
+#### Success
+
+###### Status Code
+` 200`  "User is logged in with ID: 5"
+
+Response
+no response body
+
+Example
+```
+   {
+    "success": true,
+    "message": "User is logged in with ID: 5"
+    }
+```
+
+### profile
+`GET /profile`
+
+#### Request Body 
+No Request Body
+
+#### Success
+
+###### Status Code
+` 200`  found todo 
+
+Response
+
+| Parameter | Type | Description |
+|----------|:-------------:|:------|
+| no parameter | Array of user profile | all information related to user |
+
+#### todo
+todo
+| Parameter | Type | Description |
+|----------|:-------------:|:------|
+| id | string | id of user |
+| email | string | email of user |
+| hashed_password | string | hashed password |
+| hp | int | hp of user |
+| xp | int | xp of user  |
+| level | int | level of user |
+| joined_at | DateTime | user register time |
+| task_completed | int | count of completed todo  |
+
+Example
+```
+{
+    "id": 5,
+    "username": "Bella",
+    "email": "Hazuki@gmail.com",
+    "hashed_password": "$2b$10$N0vK2D9J131dNTW2yxVXd.0bYHP7hX.qK4idTwLHZ9dNGqbNUj5wS",
+    "hp": 500,
+    "xp": 0,
+    "level": 1,
+    "profile_picture": null,
+    "joined_at": "2023-04-14T08:28:36.000Z",
+    "task_completed": 0
+}
 
 ```
