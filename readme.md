@@ -29,7 +29,7 @@ cd to backend and frontend then run.
 #### Request Body 
 | Parameter | Type | Description |
 |----------|:-------------:|:------|
-|username|String|username 
+|username|String|username |
 |password|String| password|
 
 
@@ -50,6 +50,40 @@ Response
 <!--Status code (normally 200) -->
 ###### Status Code
 <!-- STATUS BEHEAVIOR -->
-` 200`  login success
+` 200`  Login credential is correct
+
+## API endpoints
+
+#### Register
+<!-- Method /endpoint -->
+`POST /signin`
+
+#### Request Body 
+| Parameter | Type | Description |
+|----------|:-------------:|:------|
+|username|String|username |
+|email|String|email |
+|password|String| password|
+
+
+Example
+```
+{
+    "username" : "Example",
+    "email" : "Examplekmutt@gmail.com",
+    "password" : "Example123"
+
+}   
+
+```
+
+<!-- The response if success -->
+#### Success
+Response
+
+<!--Status code (normally 200) -->
+###### Status Code
+<!-- STATUS BEHEAVIOR -->
+` 200`  Registration success
 
 
