@@ -84,4 +84,54 @@ Response
 <!-- STATUS BEHEAVIOR -->
 ` 200`  Registration success
 
+#### getAllNotes
+`GET /task`
+
+#### Request Body 
+No Request Body
+
+#### Success
+
+###### Status Code
+` 200`  found todo 
+
+Response
+
+| Parameter | Type | Description |
+|----------|:-------------:|:------|
+| no parameter | Array of todo | all todo related to user |
+
+#### note
+the note object
+| Parameter | Type | Description |
+|----------|:-------------:|:------|
+| id | string | id of todo |
+| user_id | string | id of user |
+| name | string | todo name |
+| created_at | DateTime | create time |
+| completed | boolean | completed todo  |
+| completed_at | DateTime | completed time |
+
+Example
+```
+[
+    {
+        "id": 3,
+        "user_id": 3,
+        "name": "Complete assignment",
+        "created_at": "2023-04-14T02:49:30.000Z",
+        "completed": 1,
+        "completed_at": "2023-04-14T02:58:27.000Z"
+    },
+    {
+        "id": 4,
+        "user_id": 2,
+        "name": "Clean",
+        "created_at": "2023-04-14T02:57:34.000Z",
+        "completed": 1,
+        "completed_at": "2023-04-14T02:58:41.000Z"
+    }
+]
+
+```
 
