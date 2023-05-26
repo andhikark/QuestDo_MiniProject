@@ -8,22 +8,23 @@ import Cookies from 'js-cookie';
 function ProfilePage() {
   const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-    const userToken = Cookies.get('user');
-    axios.get('http://127.0.0.1:8080/profile', { 
-      headers: { Authorization: `Bearer ${userToken}`,
-      withCredentials: true} 
-    }) 
-      .then(response => {
-        setUserData(response.data); 
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-        console.log(error.response);
-      });
-  }, []);
-  
+    useEffect(() => {
+      axios.get('http://127.0.0.1:8080/profile', {  
+        headers: {
+          Authorization: `Bearer ${Cookies.get('user')}`, 
+        },
+        withCredentials: true, 
+      }) 
+        .then(response => {
+          setUserData(response.data); 
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+          console.log(error.response);
+        });
+    }, []);
+    
   return (
     <div className="Home">
       <NavBar/>

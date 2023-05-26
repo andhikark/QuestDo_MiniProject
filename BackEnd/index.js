@@ -95,14 +95,16 @@ app.post("/", async (req, res) => {
 						userId: rows[0].id,
 					},
 					"ZJGX1QL7ri6BGJWj3t",
-					{ expiresIn: "1h" }
 				);
-				res.cookie("user", token);
+				res.cookie("user", token,{
+          httpOnly: true,
+        });
 
 				res.json({
 					success: true,
 					message: "Login credential is correct",
 					user: rows[0],
+          userToken: token,
 				});
 			} else {
 				res.json({
@@ -268,7 +270,6 @@ app.get('/check', (req, res) => {
 //data
 app.get('/profile', (req, res) => {
     const token = req.cookies.user;
-  
     if (!token) {
       return res.status(401).send('Unauthorized: No token provided');
     }
@@ -282,7 +283,7 @@ app.get('/profile', (req, res) => {
         } else if (results.length === 0) {
           res.status(404).send('User not found');
         } else {
-          res.send(results[0]);
+          res.json(results[0]);
         }
       });
     } catch (err) {

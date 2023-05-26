@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
+import Cookies from 'js-cookie';
 import '../styles/LoginPage.css';
 
 function Login() {
@@ -30,6 +31,8 @@ function Login() {
         username: username,
         password: password,
       });
+      const token = response.data.userToken;
+      Cookies.set('user', token);
       console.log(response);
       return response;
     } catch (error) {
