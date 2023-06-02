@@ -25,6 +25,13 @@ function ProfilePage() {
         });
     }, []);
     
+    const joinedDate = userData?.joined_at;
+    const formattedDate = joinedDate ? new Date(joinedDate).toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+   }) : '';
+
   return (
     <div className="Home">
       <NavBar/>
@@ -37,7 +44,7 @@ function ProfilePage() {
           <div className="ProfileDetails">
             <span>Email: {userData?.email}</span>
             <span>Tasks Completed: {userData?.task_completed}</span>
-            <span>Joined on: {userData?.joined_at}</span>
+            <span>Joined on: {formattedDate}</span>
           </div>
         </div>
       </div>

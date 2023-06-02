@@ -218,7 +218,8 @@ app.put('/task/:id', (req, res) => {
 
 //update username
 app.put('/myaccount', (req, res) => {
-  const token = req.cookies.user;
+  const authorization = req.headers.authorization;
+  const token = authorization.split('Bearer ')[1];
 	var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
     const { newUsername } = req.body;
     const sql = mysql.format(
@@ -269,7 +270,8 @@ app.get('/check', (req, res) => {
 
 //data
 app.get('/profile', (req, res) => {
-    const token = req.cookies.user;
+  const authorization = req.headers.authorization;
+  const token = authorization.split('Bearer ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized: No token provided');
     }
@@ -291,7 +293,52 @@ app.get('/profile', (req, res) => {
     }
   });
   
+//update task completed  
+app.put('/user/task_completed', (req, res) => {
+  const token = req.cookies.user;
+    if (!token) {
+      return res.status(401).send('Unauthorized: No token provided');
+    }
+  
+    try {
+      var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
+      connection.query(`UPDATE users SET task_completed = task_completed + 1 WHERE id = ?`,[decoded.userId], (error, results) => {
+        if (error) {
+          console.error(error);
+          res.status(500).send('Error retrieving user data');
+        } else if (results.length === 0) {
+          res.status(404).send('User not found');
+        } else {
+          res.json(results[0]);
+        }
+      });
+    } catch (err) {
+      res.status(401).send('Unauthorized: Invalid token');
+    }
+});
 
+app.put('/user', (req, res) => {
+  const token = req.cookies.user;
+    if (!token) {
+      return res.status(401).send('Unauthorized: No token provided');
+    }
+  
+    try {
+      var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
+      connection.query(`UPDATE users SET task_completed = task_completed + 1 WHERE id = ?`,[decoded.userId], (error, results) => {
+        if (error) {
+          console.error(error);
+          res.status(500).send('Error retrieving user data');
+        } else if (results.length === 0) {
+          res.status(404).send('User not found');
+        } else {
+          res.json(results[0]);
+        }
+      });
+    } catch (err) {
+      res.status(401).send('Unauthorized: Invalid token');
+    }
+});
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
 });

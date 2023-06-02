@@ -7,6 +7,7 @@ import SignInPage from './components/SignInPage'
 import MyAccountPage from './components/MyAccountPage'
 import ProfilePage from './components/ProfilePage'
 import Login from './components/LoginPage'
+import Error from "./components/Error";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/myaccount" element={<MyAccountPage />} />
             <Route path="/" element={<Login />} />
             <Route path="/signin" element={<SignInPage />} />
+            <Route path="*" element={<Error/>} />
           </Routes>
       </div>
     </Router>
